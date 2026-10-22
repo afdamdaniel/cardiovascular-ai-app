@@ -1,24 +1,27 @@
-
 import os
 from pathlib import Path
 
+import streamlit as st
 from dotenv import load_dotenv
 from groq import Groq
 
-# Load environment variables
-BASE_DIR = Path(__file__).resolve().parent.parent
+ROOT = Path(__file__).resolve().parent.parent
 
+# Local development
 load_dotenv(ROOT / ".env")
 
-if not os.getenv("GROQ_API_KEY"):
+# Streamlit Cloud deployment
+api_key = os.getenv("GROQ_API_KEY")
+
+if not api_key:
     try:
-        os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
-    except (FileNotFoundError, KeyError):
-        pass
+        api_key = st.secrets.get("GROQ_API_KEY")
+    except FileNotFoundError:
+        api_key = None
 
 MODEL_NAME = os.getenv(
     "GROQ_MODEL",
-    "llama-3.1-8b-instant"
+    "openai/gpt-oss-20b"
 )
 
 
@@ -31,12 +34,16 @@ def generate_explanation(prediction, probability=None):
     api_key = os.getenv("GROQ_API_KEY")
 
     if not api_key:
-        import streamlit as st
-        api_key = st.secrets.get("GROQ_API_KEY")
+        try:
+            import streamlit as st
+            api_key = st.secrets.get("GROQ_API_KEY")
+        except (FileNotFoundError, KeyError):
+            api_key = None
 
     if not api_key:
         raise ValueError(
-            "GROQ_API_KEY is missing. Check your .env file."
+            "GROQ_API_KEY is missing. "
+            "Check your .env or Streamlit Cloud Secrets."
         )
 
     client = Groq(api_key=api_key)
