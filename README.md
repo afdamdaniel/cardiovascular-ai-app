@@ -156,8 +156,6 @@ cardiovascular-ai-app/
 └── cardiovascular_prediction.ipynb # Training notebook, if published
 ```
 
-> This tree shows the **recommended repository contents**. Add the screenshot and training notebook only if you want to publish them. The `.pkl` model must actually be present at the configured path on the hosting server.
-
 ## ⚙️ Run Locally
 
 ### Prerequisites
