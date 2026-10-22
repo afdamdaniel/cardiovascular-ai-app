@@ -12,7 +12,7 @@ from src.llm_service import generate_explanation
 ROOT = Path(__file__).resolve().parent
 load_dotenv(ROOT / '.env')
 
-MODEL_PATH = ROOT / os.getenv('MODEL_PATH', 'models/cardiovascular_detedtion_model.pkl')
+MODEL_PATH = ROOT / os.getenv('MODEL_PATH', 'models/cardiovascular_detection_model.pkl')
 FEATURES_PATH = ROOT / 'config' / 'features.json'
 POSITIVE_LABEL = os.getenv('POSITIVE_LABEL', '1')
 
