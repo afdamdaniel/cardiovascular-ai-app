@@ -1,0 +1,146 @@
+{
+  "verified": true,
+  "_note": "Feature names/order based on uploaded notebook. Input bounds reflect training dataset after cleaning (except age shown in original years). Validate categorical definitions with original dataset documentation. Age transformation happens in app.py.",
+  "features": [
+    {
+      "name": "age",
+      "label": "Age (years)",
+      "type": "integer",
+      "min": 29,
+      "max": 64,
+      "default": 52,
+      "help": "Notebook training ages 29 to 64. Application converts years using ln(age) + 1 before prediction."
+    },
+    {
+      "name": "gender",
+      "label": "Gender (dataset encoding)",
+      "type": "select",
+      "options": [
+        {
+          "label": "Female (1)",
+          "value": 1
+        },
+        {
+          "label": "Male (2)",
+          "value": 2
+        }
+      ]
+    },
+    {
+      "name": "height",
+      "label": "Height (cm)",
+      "type": "integer",
+      "min": 55,
+      "max": 250,
+      "default": 165
+    },
+    {
+      "name": "weight",
+      "label": "Weight (kg)",
+      "type": "float",
+      "min": 11,
+      "max": 200,
+      "default": 74.0,
+      "step": 0.5
+    },
+    {
+      "name": "ap_hi",
+      "label": "Systolic blood pressure (mmHg)",
+      "type": "integer",
+      "min": 60,
+      "max": 250,
+      "default": 120
+    },
+    {
+      "name": "ap_lo",
+      "label": "Diastolic blood pressure (mmHg)",
+      "type": "integer",
+      "min": 40,
+      "max": 200,
+      "default": 80
+    },
+    {
+      "name": "cholesterol",
+      "label": "Cholesterol level",
+      "type": "select",
+      "options": [
+        {
+          "label": "Normal (1)",
+          "value": 1
+        },
+        {
+          "label": "Above normal (2)",
+          "value": 2
+        },
+        {
+          "label": "Well above normal (3)",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "gluc",
+      "label": "Glucose level",
+      "type": "select",
+      "options": [
+        {
+          "label": "Normal (1)",
+          "value": 1
+        },
+        {
+          "label": "Above normal (2)",
+          "value": 2
+        },
+        {
+          "label": "Well above normal (3)",
+          "value": 3
+        }
+      ]
+    },
+    {
+      "name": "smoke",
+      "label": "Smoking",
+      "type": "select",
+      "options": [
+        {
+          "label": "No",
+          "value": 0
+        },
+        {
+          "label": "Yes",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "name": "alco",
+      "label": "Alcohol consumption",
+      "type": "select",
+      "options": [
+        {
+          "label": "No",
+          "value": 0
+        },
+        {
+          "label": "Yes",
+          "value": 1
+        }
+      ]
+    },
+    {
+      "name": "active",
+      "label": "Physical activity",
+      "type": "select",
+      "options": [
+        {
+          "label": "Inactive",
+          "value": 0
+        },
+        {
+          "label": "Active",
+          "value": 1
+        }
+      ]
+    }
+  ]
+}

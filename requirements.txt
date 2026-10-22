@@ -1,0 +1,8 @@
+streamlit
+pandas==2.3.3
+scikit-learn==1.9.1
+joblib==1.6.0
+python-dotenv==1.2.4
+numpy==2.5.4
+xgboost==3.4.1
+groq==1.7.0
