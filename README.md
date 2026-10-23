@@ -37,7 +37,8 @@ Users enter cardiovascular-related measurements and lifestyle indicators. A pre-
 ### What this project demonstrates
 
 - **Machine learning:** exploratory analysis, input cleaning, model training, evaluation, and model serialization.
-- **Model comparison:** Logistic Regression and XGBoost evaluated on the same held-out test data; Random Forest explored separately.
+- **Model comparison:** Evaluated Logistic Regression and XGBoost on the same held-out test set using accuracy, precision, recall, and F1-score.
+- **Hyperparameter tuning:** Applied GridSearchCV to Random Forest using 3-fold cross-validation and 16 hyperparameter combinations, achieving a best CV F1-score of 0.7166.
 - **Inference engineering:** loading a saved `.pkl` classifier, preserving feature schema and training-time transformations, and validating input.
 - **LLM integration:** using Groq's hosted model to explain the classifier's output without allowing the LLM to overwrite predictions.
 - **Python project structure:** separating presentation (`app.py`), prediction (`src/model_service.py`), and generative AI (`src/llm_service.py`).
@@ -102,6 +103,46 @@ These values are reported by the executed classification reports in `cardiovascu
 | Test observations | 13,735 | 13,735 |
 
 **Why XGBoost?** In this experiment, XGBoost achieved slightly better test accuracy and higher positive-class recall and F1-score, which are informative metrics for a screening-oriented classification exercise. These experimental metrics **do not establish clinical reliability or safety**. Performance may differ on other datasets or real users.
+
+
+### Random Forest Hyperparameter Tuning (GridSearchCV)
+
+Random Forest was also explored using Scikit-learn's
+`GridSearchCV` to optimize model hyperparameters.
+
+The search used:
+- **Cross-validation:** 3 folds
+- **Parameter combinations:** 16
+- **Total model fits:** 48
+- **Scoring metric:** F1-score
+
+#### Hyperparameter Search Space
+
+| Parameter | Values |
+|---|---|
+| `n_estimators` | 100, 200 |
+| `max_depth` | 10, 20 |
+| `min_samples_split` | 2, 5 |
+| `min_samples_leaf` | 1, 2 |
+
+#### Best Hyperparameters
+
+| Parameter | Best Value |
+|---|---|
+| `n_estimators` | 200 |
+| `max_depth` | 10 |
+| `min_samples_split` | 5 |
+| `min_samples_leaf` | 2 |
+
+**Best Cross-Validation F1-score: 0.7166**
+
+The Random Forest result demonstrates hyperparameter
+optimization using cross-validation.
+
+**Note:** This F1-score was obtained through cross-validation
+on the training set. It is not directly comparable to the
+held-out test scores of Logistic Regression and XGBoost.
+
 
 ### Model artifact
 
